@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Oval } from 'react-loader-spinner';
 
 const UserProtectWrapper = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -35,8 +36,13 @@ const UserProtectWrapper = ({ children }) => {
   }, [token, navigate, setUser]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="w-16 h-16 bg-blue-500 rounded-full animate-pulse"></div>
+    </div>
+  );
+}
+
 
   return <>{children}</>;
 };
