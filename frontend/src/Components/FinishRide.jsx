@@ -39,7 +39,7 @@ const FinishRide = (props) => {
         </div>
       </div>
 
-      {/* Ride Info Section */}
+
       <div className="flex gap-2 justify-between items-center flex-col">
         
         <div className="w-full mt-5">
@@ -71,7 +71,7 @@ const FinishRide = (props) => {
             </div>
           </div>
         </div>
-        {/* Confirm Button */}
+ 
         <div className='mt-10 w-full'>
         <button 
         onClick={endRide}
