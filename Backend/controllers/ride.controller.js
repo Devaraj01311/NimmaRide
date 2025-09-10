@@ -13,7 +13,7 @@ module.exports.createRide = async (req, res) => {
     const { pickup, destination, vehicleType } = req.body;
 
     try {
-        // 1️Create ride in DB
+    
         const ride = await rideService.createRide({
             user: req.user._id,
             pickup,
@@ -27,21 +27,18 @@ module.exports.createRide = async (req, res) => {
         // Fire-and-forget async tasks for captain dispatch
         (async () => {
             try {
-                // a) Get pickup coordinates
                 const pickupCoordinates = await mapService.getAddressCoordinate(pickup);
                 console.log("Pickup coords:", pickupCoordinates);
-
-                // b) Get nearby captains (within 2 km)
                 const captainsInRadius = await mapService.getCaptainInTheRadius(
                     pickupCoordinates.lat, 
                     pickupCoordinates.lng,
-                    2 // radius in km
+                    2 
                 );
 
-                // c) Load ride with populated user
+            
                 const rideWithUser = await rideModel.findOne({ _id: ride._id }).populate('user');
 
-                // d) Prepare ride data with fullname as string
+              
                 const rideData = {
                     ...rideWithUser.toObject(),
                     user: {
