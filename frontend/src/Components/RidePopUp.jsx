@@ -17,7 +17,7 @@ const RidePopUp = (props) => {
     return () => document.removeEventListener("click", unlockAudio);
   }, []);
 
-  //  Play/stop ringtone when popup opens/closes
+
   useEffect(() => {
     let timer;
     if (props.ridePopupPanel && audioRef.current) {
@@ -27,7 +27,7 @@ const RidePopUp = (props) => {
         .play()
         .catch((err) => console.log("Autoplay blocked:", err));
 
-      // Auto close popup after 5 seconds
+    
       timer = setTimeout(() => {
         stopSound();
         props.setRidePopupPanel(false);
@@ -109,7 +109,6 @@ const RidePopUp = (props) => {
           </div>
         </div>
 
-        {/* Buttons */}
         <div className="flex flex-col mt-5 w-full items-center">
           <button
             onClick={handleAccept}
