@@ -30,7 +30,15 @@ router.get('/profile', authMiddleware.authCaptain, captainController.getCaptainP
 
 router.get('/logout', authMiddleware.authCaptain, captainController.logoutCaptain);
 
-
+router.post(
+    '/update-location',
+    authMiddleware.authCaptain,
+    [
+        body('latitude').isFloat().withMessage('Latitude is required and must be a number'),
+        body('longitude').isFloat().withMessage('Longitude is required and must be a number'),
+    ],
+    captainController.updateLocation
+);
 
 
 module.exports = router;

@@ -11,7 +11,7 @@ const captainSchema = new mongoose.Schema({
         },
         lastname: {
             type: String,
-            minlength: [1, 'Last name must be at least 3 characters long'],
+            minlength: [1, 'Last name must be at least 1 character long'],
         }
     },
     email: {
@@ -29,15 +29,13 @@ const captainSchema = new mongoose.Schema({
     socketId: {
         type: String,
     },
-
     status: {
         type: String,
         enum: ['active', 'inactive'],
         default: 'inactive',
     },
-
-    vehicle:{
-        color:{
+    vehicle: {
+        color: {
             type: String,
             required: true,
             minlength: [3, 'Color must be at least 3 characters long'],
@@ -53,39 +51,41 @@ const captainSchema = new mongoose.Schema({
             minlength: [1, 'Capacity must be at least 1 character long'],
         },
         vehicleType: {
-        type: String,
-        required: true,
-        enum: ['car', 'motorcycle', 'auto'],
+            type: String,
+            required: true,
+            enum: ['car', 'motorcycle', 'auto'],
+        },
     },
 
+    // 🔥 Proper GeoJSON location field
     location: {
-        lat: {
-            type: Number,
+        type: {
+            type: String,
+            enum: ['Point'],
+            default: 'Point'
         },
-        lng: {
-            type: Number,
-        },
+        coordinates: {
+            type: [Number], // [longitude, latitude]
+            default: [0, 0]
+        }
     }
-    }
-})
+});
 
-captainSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
-    return token;
+// Add geospatial index (for $near queries)
+captainSchema.index({ location: '2dsphere' });
+
+captainSchema.methods.generateAuthToken = function () {
+    return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });
 }
 
-captainSchema.methods.comparePassword = async function (password){
-    return await bcrypt.compare(password, this.password)
+captainSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
 }
-    
 
 captainSchema.statics.hashPassword = async function (password) {
     return await bcrypt.hash(password, 10);
 }
 
-const captainModel = mongoose.model('captain', captainSchema)
-
+const captainModel = mongoose.model('captain', captainSchema);
 
 module.exports = captainModel;
-
-

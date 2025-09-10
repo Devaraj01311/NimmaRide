@@ -78,3 +78,35 @@ module.exports.logoutCaptain = async (req, res, next) => {
     return res.status(200).json({ message: 'Logout successfully' });
     
 }
+
+
+module.exports.updateLocation = async (req, res, next) => {
+    try {
+        const { latitude, longitude } = req.body;
+
+        if (!latitude || !longitude) {
+            return res.status(400).json({ message: "Latitude and longitude are required" });
+        }
+
+        // MongoDB expects [lng, lat]
+        const updatedCaptain = await captainModel.findByIdAndUpdate(
+            req.captain._id,
+            {
+                $set: {
+                    location: {
+                        type: "Point",
+                        coordinates: [longitude, latitude]
+                    }
+                }
+            },
+            { new: true }
+        );
+
+        return res.status(200).json({
+            message: "Location updated successfully",
+            captain: updatedCaptain
+        });
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+};
