@@ -102,7 +102,7 @@ const UserSignup = () => {
       </div>
       <div>
          <p className='text-[10px] leading-tight'>
-          By proceeding, you consent to get calls, WhatsApp or SMS messages, including by automated means, from Uber and its affiliates to the number provided.
+          By proceeding, you consent to get calls, WhatsApp or SMS messages, including by automated means, from NammaRide and its affiliates to the number provided.
          </p>
       </div>
     </div>
