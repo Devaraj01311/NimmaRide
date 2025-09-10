@@ -1,4 +1,4 @@
-// src/Components/LocationSearchPanel.jsx
+
 import React from 'react';
 
 function LocationSearchPanel({
