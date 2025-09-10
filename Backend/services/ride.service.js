@@ -12,7 +12,6 @@ async function getFare(pickup, destination) {
     let distanceTime = await mapService.getDistanceTime(pickup, destination);
    
 
-    // Parse string values like "2.0 km" and "8 mins"
     const parseDistanceKm = (d) => parseFloat(d.replace('km', '').trim());
     const parseDurationMin = (d) => parseFloat(d.replace('mins', '').replace('min', '').trim());
 
@@ -145,13 +144,13 @@ module.exports.endRide = async ({ rideId, captain }) => {
 
   // update ride
   const ride = await Ride.findOneAndUpdate(
-    { _id: rideId, captain: captain._id }, // ensure captain owns this ride
+    { _id: rideId, captain: captain._id }, 
     {
       status: "completed",
       endTime: new Date()
     },
     { new: true }
-  ).populate("user"); // 👈 ensures user object is available
+  ).populate("user"); 
 
   return ride;
 };
