@@ -4,7 +4,7 @@ import React from 'react';
 const VehiclePanel = ({ fare, setVehiclePanel, setConfirmRidePanel ,selectVehicle }) => {
   return (
     <div className='rounded-t-xl '>
-      {/* Header section */}
+  
       <div className='relative  text-center'>
         <button
           className='p-1 absolute w-[93%] top-0 text-3xl text-gray-200'
@@ -15,7 +15,6 @@ const VehiclePanel = ({ fare, setVehiclePanel, setConfirmRidePanel ,selectVehicl
         <h1 className='text-2xl font-semibold mb-6 pt-10'>Choose a vehicle</h1>
       </div>
 
-      {/* Vehicle Option 1 - UberGo */}
       <div
         onClick={() => {
           setConfirmRidePanel(true)
@@ -30,7 +29,7 @@ const VehiclePanel = ({ fare, setVehiclePanel, setConfirmRidePanel ,selectVehicl
         />
         <div className='ml-2 w-1/2'>
           <h4 className='font-medium text-base'>
-            UberGo <span><i className='ri-user-3-fill'></i> 4</span>
+            GoRide <span><i className='ri-user-3-fill'></i> 4</span>
           </h4>
           <p className='font-medium text-sm'>2 mins away</p>
           <p className='font-normal text-xs text-gray-600'>Affordable, compact rides</p>
@@ -38,7 +37,7 @@ const VehiclePanel = ({ fare, setVehiclePanel, setConfirmRidePanel ,selectVehicl
         <p className='text-lg font-semibold'>₹{fare?.car ?? '--'}</p>
       </div>
 
-      {/* Vehicle Option 2 - Moto */}
+
       <div
         onClick={() => {
           setConfirmRidePanel(true)
@@ -61,7 +60,7 @@ const VehiclePanel = ({ fare, setVehiclePanel, setConfirmRidePanel ,selectVehicl
         <p className='text-lg font-semibold'>₹{fare?.motorcycle ?? '--'}</p>
       </div>
 
-      {/* Vehicle Option 3 - UberAuto */}
+  
       <div
         onClick={() => {
           setConfirmRidePanel(true)
