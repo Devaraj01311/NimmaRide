@@ -1,8 +1,8 @@
-// src/pages/ConfirmRide.jsx
+
 import React from 'react';
 
 const ConfirmRide = (props) => {
-  // Vehicle images mapping
+
 const vehicleImages = {
   car: "https://i.pinimg.com/originals/93/c1/05/93c105244c0a3de81267a89cb13386f7.png",
   motorcycle: "https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_956,h_637/v1649231091/assets/2c/7fa194-c954-49b2-9c6d-a3b8601370f5/original/Uber_Moto_Orange_312x208_pixels_Mobile.png",
@@ -12,7 +12,7 @@ const vehicleImages = {
 
   return (
     <div>
-      {/* Header Section */}
+
       <div className="relative text-center">
         <button
           className="p-1 absolute w-[93%] top-0"
@@ -23,7 +23,7 @@ const vehicleImages = {
         <h1 className="text-2xl font-semibold mb-5 pt-10">Confirm your Ride</h1>
       </div>
 
-      {/* Ride Info Section */}
+
       <div className="flex gap-2 justify-between items-center flex-col">
         <img
           className="h-20"
@@ -62,7 +62,6 @@ const vehicleImages = {
           </div>
         </div>
 
-        {/* Confirm Button */}
         <button
           onClick={() => {
             props.setVehicleFound(true);
