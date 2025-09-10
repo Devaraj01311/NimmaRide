@@ -14,25 +14,25 @@ function initializeSocket(server) {
   });
 
   io.on("connection", (socket) => {
-    console.log(`✅ New client connected: ${socket.id}`);
+    console.log(`New client connected: ${socket.id}`);
 
     // Register user/captain socket
     socket.on("join", async ({ userId, userType }) => {
       if (!mongoose.Types.ObjectId.isValid(userId)) {
-        console.log(`❌ Invalid userId: ${userId}`);
+        console.log(`Invalid userId: ${userId}`);
         return;
       }
 
       try {
         if (userType === "user") {
           await userModel.findByIdAndUpdate(userId, { socketId: socket.id });
-          console.log(`👤 User ${userId} registered with socket ${socket.id}`);
+          console.log(`User ${userId} registered with socket ${socket.id}`);
         } else if (userType === "captain") {
           await captainModel.findByIdAndUpdate(userId, { socketId: socket.id });
-          console.log(`🚖 Captain ${userId} registered with socket ${socket.id}`);
+          console.log(`Captain ${userId} registered with socket ${socket.id}`);
         }
       } catch (err) {
-        console.error("❌ Error updating socketId:", err.message);
+        console.error("Error updating socketId:", err.message);
       }
     });
 
@@ -42,7 +42,7 @@ function initializeSocket(server) {
       io.emit("chatMessage", msg); // broadcast to all
     });
 
-    // ✅ Handle captain location update
+    //  Handle captain location update
     socket.on("update-location-captain", async ({ userId, location }) => {
       if (!location || !location.lat || !location.lng) {
         return socket.emit("error", { message: "Invalid location format" });
@@ -57,7 +57,7 @@ function initializeSocket(server) {
           },
         });
 
-        console.log(`📍 Captain ${userId} location updated:`, location);
+        console.log(`Captain ${userId} location updated:`, location);
 
         // Acknowledge captain
         socket.emit("location-updated", { success: true, location });
@@ -65,25 +65,25 @@ function initializeSocket(server) {
         // Broadcast to all users
         io.emit("captain-location-update", { captainId: userId, location });
       } catch (err) {
-        console.error("❌ Error updating location:", err.message);
+        console.error(" Error updating location:", err.message);
         socket.emit("error", { message: "Failed to update location" });
       }
     });
 
     socket.on("disconnect", () => {
-      console.log(`❎ Client disconnected: ${socket.id}`);
+      console.log(`Client disconnected: ${socket.id}`);
     });
   });
 }
 
 // Send message to specific socket
 function sendMessageToSocketId(socketId, event, payload) {
-  console.log(`📤 Sending "${event}" to ${socketId}`, payload);
+  console.log(` Sending "${event}" to ${socketId}`, payload);
 
   if (io) {
     io.to(socketId).emit(event, payload);
   } else {
-    console.log("⚠️ Socket.io not initialized.");
+    console.log(" Socket.io not initialized.");
   }
 }
 
