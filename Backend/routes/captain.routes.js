@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { body } = require("express-validator");
 const authMiddleware = require('../middlewares/auth.middleware');
-console.log("📦 captain.routes.js loaded");
+console.log("captain.routes.js loaded");
 
 
 router.post('/register', [
