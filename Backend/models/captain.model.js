@@ -57,7 +57,7 @@ const captainSchema = new mongoose.Schema({
         },
     },
 
-    // 🔥 Proper GeoJSON location field
+
     location: {
         type: {
             type: String,
@@ -65,13 +65,13 @@ const captainSchema = new mongoose.Schema({
             default: 'Point'
         },
         coordinates: {
-            type: [Number], // [longitude, latitude]
+            type: [Number], 
             default: [0, 0]
         }
     }
 });
 
-// Add geospatial index (for $near queries)
+
 captainSchema.index({ location: '2dsphere' });
 
 captainSchema.methods.generateAuthToken = function () {

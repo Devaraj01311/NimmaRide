@@ -13,7 +13,7 @@ module.exports.createRide = async (req, res) => {
     const { pickup, destination, vehicleType } = req.body;
 
     try {
-        // 1️⃣ Create ride in DB
+    
         const ride = await rideService.createRide({
             user: req.user._id,
             pickup,
@@ -21,39 +21,36 @@ module.exports.createRide = async (req, res) => {
             vehicleType
         });
 
-        // 2️⃣ Respond immediately to user
+    
         res.json(ride);
 
-        // 3️⃣ Fire-and-forget async tasks for captain dispatch
+        // Fire-and-forget async tasks for captain dispatch
         (async () => {
             try {
-                // a) Get pickup coordinates
                 const pickupCoordinates = await mapService.getAddressCoordinate(pickup);
                 console.log("Pickup coords:", pickupCoordinates);
-
-                // b) Get nearby captains (within 2 km)
                 const captainsInRadius = await mapService.getCaptainInTheRadius(
                     pickupCoordinates.lat, 
                     pickupCoordinates.lng,
-                    2 // radius in km
+                    2 
                 );
 
-                // c) Load ride with populated user
+            
                 const rideWithUser = await rideModel.findOne({ _id: ride._id }).populate('user');
 
-                // d) Prepare ride data with fullname as string
+              
                 const rideData = {
                     ...rideWithUser.toObject(),
                     user: {
                         _id: rideWithUser.user._id,
-                        fullname: rideWithUser.user.fullnameString, // ✅ virtual string
+                        fullname: rideWithUser.user.fullnameString, 
                         email: rideWithUser.user.email,
                         socketId: rideWithUser.user.socketId
                     },
-                    otp: "" // hide OTP when sending to captains
+                    otp: ""
                 };
 
-                // e) Emit ride to each nearby captain
+              
                captainsInRadius.forEach(captain => {
   console.log(`Sending ride to captain: ${captain.fullnameString || captain.fullname}`);
   sendMessageToSocketId(captain.socketId, 'new-ride', rideData);
@@ -145,12 +142,12 @@ module.exports.endRide = async (req, res) => {
     if (ride.user && ride.user.socketId) {
       sendMessageToSocketId(ride.user.socketId, "ride-ended", ride);
     } else {
-      console.warn("⚠️ ride.user or socketId missing:", ride.user);
+      console.warn(" ride.user or socketId missing:", ride.user);
     }
 
     return res.status(200).json(ride);
   } catch (err) {
-    console.error("❌ endRide error:", err);
+    console.error("endRide error:", err);
     return res.status(500).json({ message: err.message || "Internal Server Error" });
   }
 };

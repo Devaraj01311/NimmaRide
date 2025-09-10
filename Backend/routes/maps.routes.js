@@ -17,7 +17,7 @@ console.log('typeof getDistanceTime:', typeof getDistanceTime);
 console.log('typeof  getAutoCompleteSuggestions:', typeof  getAutoCompleteSuggestions);
 
 
-// GET /api/maps/get-coordinates?address=Some+place
+
 router.get(
   '/get-coordinates',
   query('address').isString().isLength({ min: 3 }),
@@ -25,7 +25,6 @@ router.get(
   getCoordinates
 );
 
-// GET /api/maps/get-distance-time?origin=...&destination=...
 router.get(
   '/get-distance-time',
   query('origin').isString().isLength({ min: 3 }),
