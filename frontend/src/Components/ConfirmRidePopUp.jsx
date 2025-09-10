@@ -60,6 +60,7 @@ if (response.status === 200 || response.status === 201) {
         </div>
       </div>
 
+      {/* Ride Info Section */}
       <div className="flex gap-2 justify-between items-center flex-col">
         <div className="w-full mt-5">
           <div className="flex items-center gap-5 p-3 border-b-2">
@@ -91,7 +92,7 @@ if (response.status === 200 || response.status === 201) {
           </div>
         </div>
 
-
+        {/* Confirm Button */}
         <div className='mt-6 w-full'>
           <form onSubmit={submitHandler}>
             <input

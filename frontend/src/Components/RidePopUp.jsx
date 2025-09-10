@@ -59,7 +59,6 @@ const RidePopUp = (props) => {
 
   return (
     <div>
-      {/* put DriverAudio.mp3 in /public and use absolute path */}
       <audio ref={audioRef} src="/DriverAudio.mp3" preload="auto" />
 
       <div className="relative text-center">
@@ -81,7 +80,6 @@ const RidePopUp = (props) => {
         </div>
       </div>
 
-      {/* Ride Info Section */}
       <div className="flex gap-2 justify-between items-center flex-col">
         <div className="w-full mt-5">
           <div className="flex items-center gap-5 p-3 border-b-2">

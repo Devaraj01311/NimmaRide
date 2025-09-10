@@ -24,11 +24,9 @@ const Home = () => {
 
   const navigate= useNavigate();
 
-  // ✅ suggestions states
   const [pickupSuggestions, setPickupSuggestions] = useState([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState([]);
 
-  // refs for GSAP
   const vehiclePanelRef = useRef(null);
   const vehicleFoundRef = useRef(null);
   const confirmRidePanelRef = useRef(null);
@@ -36,7 +34,7 @@ const Home = () => {
   const panelCloseRef = useRef(null);
   const waitingForDriverRef = useRef(null);
 
-  // panel states
+
   const [vehiclePanel, setVehiclePanel] = useState(false);
   const [confirmRidePanel, setConfirmRidePanel] = useState(false);
   const [vehicleFound, setVehicleFound] = useState(false);
@@ -90,7 +88,7 @@ useEffect(() => {
 
 
 
-  // ✅ handle pickup input
+  //  handle pickup input
   const handlePickupChange = async (e) => {
     const value = e.target.value;
     setPickup(value);
@@ -116,7 +114,7 @@ useEffect(() => {
     }
   };
 
-  // ✅ handle destination input
+ 
   const handleDestinationChange = async (e) => {
     const value = e.target.value;
     setDestination(value);
@@ -146,7 +144,7 @@ useEffect(() => {
     e.preventDefault();
   };
 
-  // ✅ GSAP animations
+
   useGSAP(() => {
     if (panelOpen) {
       gsap.to(panelRef.current, { height: '70%', opacity: 1 });
@@ -218,7 +216,7 @@ useEffect(() => {
 
   return (
     <div className='h-screen relative'>
-      {/* Header */}
+ 
       <div className='fixed p-2 top-0 flex items-center justify-between w-screen '>
         <img className='w-28 top-0 left-2 ' src="/image.png" alt="logo" />
         <Link to='/login' className='h-10 w-10 bg-white flex items-center justify-center rounded-full'>
@@ -226,7 +224,6 @@ useEffect(() => {
         </Link>
       </div>
 
-      {/* Background map */}
       <div
         onClick={() => setVehiclePanel(false)}
         className='h-screen w-screen'
@@ -238,7 +235,7 @@ useEffect(() => {
         />
       </div>
 
-      {/* Form */}
+     
       <div className='flex flex-col justify-end h-screen absolute top-0 w-full '>
         <div className='h-[30%] p-5 rounded-t-3xl bg-white relative'>
           <h5
@@ -281,7 +278,7 @@ useEffect(() => {
           </button>
         </div>
 
-        {/* Suggestions Panel */}
+
         <div ref={panelRef} className='h-0 bg-white   overflow-y-auto'>
           <LocationSearchPanel
             query={activeField === 'pickup' ? pickup : destination}
@@ -296,12 +293,11 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Vehicle Selection */}
+    
       <div ref={vehiclePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full px-3 py-10 pt-12 bg-white rounded-t-3xl'>
         <VehiclePanel selectVehicle={setVehicleType} fare={fare} setConfirmRidePanel={setConfirmRidePanel} setVehiclePanel={setVehiclePanel} />
       </div>
 
-      {/* Confirm Ride */}
       <div ref={confirmRidePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full px-3 py-6 pt-12 bg-white rounded-t-3xl'>
         <ConfirmRide 
         createRide={createRide}
@@ -312,7 +308,6 @@ useEffect(() => {
         setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound} />
       </div>
 
-      {/* Looking for Driver */}
       <div ref={vehicleFoundRef} className='fixed w-full z-10 bottom-0 translate-y-full px-3 py-6 pt-12 bg-white rounded-t-3xl'>
         <LookingForDriver 
          createRide={createRide}
@@ -323,7 +318,7 @@ useEffect(() => {
         setVehicleFound={setVehicleFound} setWaitingForDriver={setWaitingForDriver} />
       </div>
 
-      {/* Waiting for Driver */}
+  
       <div ref={waitingForDriverRef} className='fixed w-full z-10 bottom-0 translate-y-full px-3 py-6 pt-12 bg-white rounded-t-3xl'>
         <WaitingForDriver
         ride={ride}

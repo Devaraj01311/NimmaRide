@@ -46,11 +46,10 @@ const vehicleType = ride?.captain?.vehicle?.vehicleType;
         </div>
       </div>
 
-      {/* Route & Fare Info */}
       <div className="flex gap-2 justify-between items-center flex-col">
         <div className="w-full mt-5">
 
-          {/* Drop Address */}
+  
           <div className="flex items-center gap-5 p-3 border-b-2">
             <i className="text-lg ri-map-pin-user-fill"></i>
             <div>
@@ -61,7 +60,6 @@ const vehicleType = ride?.captain?.vehicle?.vehicleType;
             </div>
           </div>
 
-          {/* Fare Info */}
           <div className="flex items-center gap-5 p-3 border-b-2">
             <i className="text-lg ri-currency-line"></i>
             <div>

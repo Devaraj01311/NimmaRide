@@ -12,7 +12,7 @@ const vehicleImages = {
 
   return (
     <div>
-
+      {/* Header Section */}
       <div className="relative text-center">
         <button
           className="p-1 absolute w-[93%] top-0"
@@ -23,7 +23,7 @@ const vehicleImages = {
         <h1 className="text-2xl font-semibold mb-5 pt-10">Confirm your Ride</h1>
       </div>
 
-
+      {/* Ride Info Section */}
       <div className="flex gap-2 justify-between items-center flex-col">
         <img
           className="h-20"
@@ -62,6 +62,7 @@ const vehicleImages = {
           </div>
         </div>
 
+        {/* Confirm Button */}
         <button
           onClick={() => {
             props.setVehicleFound(true);

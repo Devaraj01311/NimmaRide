@@ -12,7 +12,7 @@ const defaultCenter = { lat: -3.745, lng: -38.523 };
 const LiveTracking = () => {
   const [currentPosition, setCurrentPosition] = useState(defaultCenter);
 
-  //  Function to update backend
+  // ✅ Function to update backend
   const sendLocationToBackend = async (latitude, longitude) => {
     try {
       await axios.post(
@@ -47,7 +47,7 @@ const LiveTracking = () => {
 
         console.log(" Position updated:", latitude, longitude);
 
-        //  Send to backend every update
+        // ✅ Send to backend every update
         sendLocationToBackend(latitude, longitude);
       },
       (error) => {

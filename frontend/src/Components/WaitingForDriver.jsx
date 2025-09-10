@@ -12,7 +12,7 @@ const WaitingForDriver = (props) => {
 const vehicleType = props.ride?.captain?.vehicle?.vehicleType;
   return (
     <div className="relative text-center p-4">
-      {/* Close Button */}
+ 
       <button
         className="p-1 absolute w-[93%] top-0"
         onClick={() => props.waitingForDriver(false)}
@@ -20,7 +20,7 @@ const vehicleType = props.ride?.captain?.vehicle?.vehicleType;
         <i className="text-3xl text-gray-300  ri-arrow-down-wide-line"></i>
       </button>
 
-      {/* Driver Info */}
+  
       <div className="flex items-center  mt-4 justify-between ">
         <img
           className="h-20"
@@ -35,10 +35,9 @@ const vehicleType = props.ride?.captain?.vehicle?.vehicleType;
         </div>
       </div>
 
-      {/* Route & Fare Info */}
       <div className="flex gap-2 justify-between items-center flex-col">
         <div className="w-full mt-5">
-          {/* Pickup Address */}
+        
           <div className="flex items-center gap-5 p-3 border-b-2">
             <i className="text-lg ri-map-pin-2-fill"></i>
             <div>
@@ -49,7 +48,7 @@ const vehicleType = props.ride?.captain?.vehicle?.vehicleType;
             </div>
           </div>
 
-          {/* Drop Address */}
+  
           <div className="flex items-center gap-5 p-3 border-b-2">
             <i className="text-lg ri-map-pin-user-fill"></i>
             <div>
@@ -60,7 +59,7 @@ const vehicleType = props.ride?.captain?.vehicle?.vehicleType;
             </div>
           </div>
 
-          {/* Fare Info */}
+      
           <div className="flex items-center gap-5 p-3 border-b-2">
             <i className="text-lg ri-currency-line"></i>
             <div>

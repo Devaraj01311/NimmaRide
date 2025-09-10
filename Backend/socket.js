@@ -16,7 +16,6 @@ function initializeSocket(server) {
   io.on("connection", (socket) => {
     console.log(`New client connected: ${socket.id}`);
 
-    // Register user/captain socket
     socket.on("join", async ({ userId, userType }) => {
       if (!mongoose.Types.ObjectId.isValid(userId)) {
         console.log(`Invalid userId: ${userId}`);
@@ -38,8 +37,8 @@ function initializeSocket(server) {
 
     // Handle chat
     socket.on("chatMessage", (msg) => {
-      console.log(`💬 Message from ${socket.id}: ${msg}`);
-      io.emit("chatMessage", msg); // broadcast to all
+      console.log(` Message from ${socket.id}: ${msg}`);
+      io.emit("chatMessage", msg); 
     });
 
     //  Handle captain location update

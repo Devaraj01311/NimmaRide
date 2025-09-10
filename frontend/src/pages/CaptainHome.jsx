@@ -1,4 +1,4 @@
-// src/pages/Home.jsx
+
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CaptainDetails from '../Components/CaptainDetails';
@@ -115,7 +115,7 @@ async function confirmRide(){
 
   return (
     <div className="h-screen">
-      {/* Header */}
+
       <div className="fixed p-2 top-0 flex items-center justify-between w-screen">
         <img className="w-28" src="/image.png" alt="logo" />
         <Link
@@ -126,7 +126,6 @@ async function confirmRide(){
         </Link>
       </div>
 
-      {/* Background Map */}
       <div className="h-3/5">
         <img
           className="w-full h-full object-cover"
@@ -135,12 +134,12 @@ async function confirmRide(){
         />
       </div>
 
-      {/* Captain Details */}
+ 
       <div className="h-2/5 p-6">
         <CaptainDetails />
       </div>
 
-      {/* Ride Popup */}
+     
       <div
         ref={ridePopupPanelRef}
         className="fixed w-full z-10 bottom-0 px-3 py-10 pt-12 bg-white rounded-t-3xl translate-y-full"

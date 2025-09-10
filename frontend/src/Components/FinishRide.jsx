@@ -71,7 +71,7 @@ const FinishRide = (props) => {
             </div>
           </div>
         </div>
- 
+        {/* Confirm Button */}
         <div className='mt-10 w-full'>
         <button 
         onClick={endRide}
